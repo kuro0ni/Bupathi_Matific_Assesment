@@ -10,5 +10,5 @@ public class CharacterPreset_SO : ScriptableObject
     [SerializeField]
     private string Name;
     [SerializeField]
-    private Dictionary<int,Sprite> Cosmetics; 
+    private Dictionary<int,Sprite> Cosmetics;
 }

@@ -7,5 +7,14 @@ public class CosmeticItem
 {
     public int TypeId;
     public int ItemId;
-    public Sprite Sprite;
+    public int Price;
+    public int MinLevel;
+    public CosmeticItemState State;
+}
+
+public enum CosmeticItemState
+{
+    AVAILABLE = 0,
+    PURCHASABLE = 1,
+    LOCKED = 2
 }

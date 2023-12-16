@@ -12,8 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f1377192db4bf444b8c423fce5cdf38, type: 3}
   m_Name: Character_1
   m_EditorClassIdentifier: 
+  PresetId: f0f58a23-f578-4f5b-8f11-97a77818debb
   Name: Floofy
-  CosmeticTypes:
-  - {fileID: 11400000, guid: 4d3c7ecfcd98e2d4d9a3e2157222af62, type: 2}
-  - {fileID: 11400000, guid: 95f749f3e0ae52c4593188ed8ddef1ef, type: 2}
-  - {fileID: 11400000, guid: 93f976e95829b0a4a8444efd2ab421f5, type: 2}
+  BodyCosmetic: {fileID: 11400000, guid: 5f5a3dca76a1f0a409ac4ce0d80c773d, type: 2}
+  Cosmetics:
+  - TypeId: 1
+    ItemId: 5
+    Sprite: {fileID: 0}
+  - TypeId: 2
+    ItemId: 5
+    Sprite: {fileID: 0}
+  - TypeId: 3
+    ItemId: 4
+    Sprite: {fileID: 0}
+  - TypeId: 0
+    ItemId: 0
+    Sprite: {fileID: 0}

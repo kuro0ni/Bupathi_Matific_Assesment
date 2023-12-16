@@ -25,4 +25,9 @@ public class CosmeticComponent : MonoBehaviour, ICosmeticComponent
     {
         return CosmeticType;
     }
+
+    public void ClearRender()
+    {
+        CosmeticRenderer.sprite = null;
+    }
 }

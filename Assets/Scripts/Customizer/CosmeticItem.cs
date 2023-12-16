@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public struct CosmeticItem
+public class CosmeticItem
 {
-    public int Id;
-    public int Value;
+    public int TypeId;
+    public int ItemId;
+    public Sprite Sprite;
 }

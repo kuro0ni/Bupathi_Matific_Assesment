@@ -6,4 +6,6 @@ public interface ICosmeticComponent
 {
     void RenderItem(int itemId);
     CosmeticType_SO GetCosmeticType();
+
+    void ClearRender();
 }

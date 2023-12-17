@@ -8,11 +8,19 @@ public class CosmeticType_SO : ScriptableObject
     [SerializeField]
     private int TypeId;
     [SerializeField]
-    private List<Sprite> Sprites;
+    private List<CosmeticItem_SO> Items;
 
-    public Sprite GetItem(int itemId)
+    public CosmeticItem_SO GetItem(int itemId)
     {
-        return Sprites[itemId];
+        foreach (CosmeticItem_SO item in Items)
+        {
+            if (item.ItemId == itemId)
+            {
+                return item;
+            }
+        }
+
+        return null;
     }
 
     public int GetTypeId() 

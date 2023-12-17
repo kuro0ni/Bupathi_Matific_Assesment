@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IGameDataManager
+public interface IGameDataStorage
 {
-    //T GetData<T>(GameData dataType);
+    void Upload<T>(T data);
+    T Download<T>();
 }

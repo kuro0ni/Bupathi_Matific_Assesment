@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed1bee19e169eda4f94ad3472380879a, type: 3}
-  m_Name: CosmeticType_Body
+  m_Script: {fileID: 11500000, guid: 9277fda5739fa0d479e6bfaaafae03c5, type: 3}
+  m_Name: eyes_9
   m_EditorClassIdentifier: 
-  TypeId: 0
-  Sprites:
-  - {fileID: 21300000, guid: 42354f350064cd842bc7e45a5452a6d2, type: 3}
+  ItemId: 8
+  Price: 620
+  MinLevel: 0
+  State: 1
+  Sprite: {fileID: 21300000, guid: 5f25a8a76e19472419d16ea4723745d1, type: 3}

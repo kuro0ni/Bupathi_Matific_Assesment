@@ -17,8 +17,9 @@ public class CosmeticComponent : MonoBehaviour, ICosmeticComponent
     }
     public void RenderItem(int itemId)
     {
+        Debug.Log($"Rendering item {itemId}");
         SelectedItemId = itemId;
-        CosmeticRenderer.sprite = CosmeticType.GetItem(itemId);
+        CosmeticRenderer.sprite = CosmeticType.GetItem(itemId).Sprite;
     }
 
     public CosmeticType_SO GetCosmeticType()

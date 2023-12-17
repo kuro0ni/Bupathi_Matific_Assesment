@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1bee19e169eda4f94ad3472380879a, type: 3}
+  m_Name: CosmeticType_Mouth
+  m_EditorClassIdentifier: 
+  TypeId: 2
+  Items:
+  - {fileID: 11400000, guid: a0445d2ce390e99428e22b80bb6e309a, type: 2}
+  - {fileID: 11400000, guid: a94006a1b5dd9684daecc35d15b79600, type: 2}
+  - {fileID: 11400000, guid: 6e155deb0fbcd1d4bbc8006953f1c0d4, type: 2}
+  - {fileID: 11400000, guid: 6df7b36037b2acf47bd40e7a3cae9e32, type: 2}
+  - {fileID: 11400000, guid: 2829c5b6797217043b29b4d3575b2420, type: 2}
+  - {fileID: 11400000, guid: 1b90a893cc9a45f40aaee49c55a96900, type: 2}
+  - {fileID: 11400000, guid: 7f3adaf48b2b7f74db61db51133c47ee, type: 2}
+  - {fileID: 11400000, guid: 7b8ba52f72a9a2244954c92432a2af45, type: 2}
+  - {fileID: 11400000, guid: 5b5b5f83a6e6ad34d9006cd76988c672, type: 2}
+  - {fileID: 11400000, guid: b291dffa167d8f145a05b29c33087b6f, type: 2}
+  - {fileID: 11400000, guid: 2e727db9d0646db45898abc070c8a2b2, type: 2}

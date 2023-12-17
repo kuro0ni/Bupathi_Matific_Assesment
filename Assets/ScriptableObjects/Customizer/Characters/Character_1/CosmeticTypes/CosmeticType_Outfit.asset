@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1bee19e169eda4f94ad3472380879a, type: 3}
+  m_Name: CosmeticType_Outfit
+  m_EditorClassIdentifier: 
+  TypeId: 3
+  Items:
+  - {fileID: 11400000, guid: 0c18a018daf51bf4784f960d15dac6ec, type: 2}
+  - {fileID: 11400000, guid: 3b2325c95d5b63649b82235b7aff78bb, type: 2}
+  - {fileID: 11400000, guid: f5e8c9bc3345f39429c39250984b4d3a, type: 2}
+  - {fileID: 11400000, guid: df2532cba6ee9584fa0df0bd37dfb08a, type: 2}
+  - {fileID: 11400000, guid: 0972e21e42a1f4d46afdce387a0098b8, type: 2}
+  - {fileID: 11400000, guid: 6da143837f11b9c4f92f90172fa87d70, type: 2}
+  - {fileID: 11400000, guid: 4e2581189606bfa43b6da52469d1bb65, type: 2}
+  - {fileID: 11400000, guid: 221ada9476601c44d994edb5c8d67216, type: 2}
+  - {fileID: 11400000, guid: 07f2e2e6ad69d754c95c88c9500f3d72, type: 2}
+  - {fileID: 11400000, guid: c86f35ecc05cdfb408105ba0e7451326, type: 2}

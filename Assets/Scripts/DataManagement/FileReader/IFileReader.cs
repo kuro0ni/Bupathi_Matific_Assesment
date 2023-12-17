@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IFileReader
 {
-    T ReadFile<T>(string path);
-    void WriteFile<T>(string path, T data);
+    T ReadFile<T>();
+    void WriteFile<T>(T data);
 }

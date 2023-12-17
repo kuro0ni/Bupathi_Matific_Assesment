@@ -52,5 +52,6 @@ public interface IGameService {}
 public enum Service
 {
     USER_DATA_GETTER,
+    COSMETIC_DATA_GETTER,
     USER_STAT_MANAGER
 }

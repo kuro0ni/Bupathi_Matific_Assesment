@@ -5,9 +5,15 @@ using UnityEngine;
 
 public class JSONFileReader : IFileReader
 {
-    public T ReadFile<T>(string path)
+    private string Path;
+    public JSONFileReader(string path)
     {
-        StreamReader reader = new StreamReader(path);
+        Path = path;
+    }
+
+    public T ReadFile<T>()
+    {
+        StreamReader reader = new StreamReader(Path);
 
         string fileStr = reader.ReadToEnd();
 
@@ -16,9 +22,9 @@ public class JSONFileReader : IFileReader
         return data;
     }
 
-    public void WriteFile<T>(string path, T data)
+    public void WriteFile<T>(T data)
     {
-        StreamWriter writer = new StreamWriter(path);
+        StreamWriter writer = new StreamWriter(Path);
 
         string dataStr = JsonUtility.ToJson(data);
 

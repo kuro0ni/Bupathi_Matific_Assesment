@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1bee19e169eda4f94ad3472380879a, type: 3}
+  m_Name: CosmeticType_Eyes
+  m_EditorClassIdentifier: 
+  TypeId: 1
+  Items:
+  - {fileID: 11400000, guid: 258c764d844fc9d4ba24b2591cf46398, type: 2}
+  - {fileID: 11400000, guid: 96af5a623d067fa43b67fd3e48e5f38b, type: 2}
+  - {fileID: 11400000, guid: 1f784a18d1fa71847a8f3c58537e3c34, type: 2}
+  - {fileID: 11400000, guid: f8e0c84b847411d4d93a38f72ce81584, type: 2}
+  - {fileID: 11400000, guid: 89e8dd40472a4794bbdea4ca9d003289, type: 2}
+  - {fileID: 11400000, guid: 9726eff0b9185b34db20fc5342c6b374, type: 2}
+  - {fileID: 11400000, guid: b211dbd90c69a944eaed0ecb9350817f, type: 2}
+  - {fileID: 11400000, guid: 258387bcde8263246b676c7730d21e4d, type: 2}
+  - {fileID: 11400000, guid: f253783a7ebf63743a60c866dd5e4034, type: 2}
+  - {fileID: 11400000, guid: 09e377534a853e040bff211c57ae98ce, type: 2}

@@ -5,4 +5,5 @@ using UnityEngine;
 public interface ICosmeticDataGetter
 {
     CosmeticData GetData();
+    void SetData<T>(T data);
 }

@@ -26,7 +26,7 @@ public class CosmeticDataGetter : ICosmeticDataGetter, IGameService
 
     public CosmeticData GetData()
     {
-        return new CosmeticData();
+        return Data;
     }
 
     public void SetData<T>(T data)

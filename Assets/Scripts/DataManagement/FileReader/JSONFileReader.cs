@@ -16,6 +16,7 @@ public class JSONFileReader : IFileReader
         StreamReader reader = new StreamReader(Path);
 
         string fileStr = reader.ReadToEnd();
+        reader.Close();
 
         T data = JsonUtility.FromJson<T>(fileStr);
 
@@ -26,8 +27,9 @@ public class JSONFileReader : IFileReader
     {
         StreamWriter writer = new StreamWriter(Path);
 
-        string dataStr = JsonUtility.ToJson(data);
-
-        writer.WriteAsync(dataStr);
+        string dataStr = JsonUtility.ToJson(data, true);
+        Debug.Log(dataStr);
+        writer.Write(dataStr);
+        writer.Close();
     }
 }

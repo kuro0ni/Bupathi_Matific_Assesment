@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class CosmeticItem
 {
-    [DoNotSerialize]
+    [System.NonSerialized]
     public int TypeId;
     public int ItemId;
     public int Price;

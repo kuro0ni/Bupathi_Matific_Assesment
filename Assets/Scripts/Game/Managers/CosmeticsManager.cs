@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CosmeticsManager : MonoBehaviour
 {
     public List<CosmeticItem_SO> CosmeticItems;
 
+    public UnityEvent<CosmeticData> OnCosmeticDataLoaded;
     public void BuildCosmeticsDatabase()
     {
         Debug.Log("Loading cosmetics database");
@@ -35,5 +37,7 @@ public class CosmeticsManager : MonoBehaviour
 
             cosmeticDataGetter.SetData(cosmeticData);
         }
+
+        OnCosmeticDataLoaded.Invoke(cosmeticData);
     }
 }

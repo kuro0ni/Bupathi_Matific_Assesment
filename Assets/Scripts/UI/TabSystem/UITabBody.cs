@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UITabBodyItem : MonoBehaviour
+public class UITabBody : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,5 +14,20 @@ public class UITabBodyItem : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Show()
+    {
+
+    }
+
+    public void Hide()
+    {
+
+    }
+
+    public void AddNewItem(GameObject itemGO)
+    {
+        itemGO.transform.parent = transform;
     }
 }

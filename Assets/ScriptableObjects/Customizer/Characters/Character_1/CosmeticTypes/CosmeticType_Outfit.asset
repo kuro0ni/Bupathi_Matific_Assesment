@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: CosmeticType_Outfit
   m_EditorClassIdentifier: 
   TypeId: 3
+  TypeName: Outfits
   Items:
   - {fileID: 11400000, guid: 0c18a018daf51bf4784f960d15dac6ec, type: 2}
   - {fileID: 11400000, guid: 3b2325c95d5b63649b82235b7aff78bb, type: 2}

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: CosmeticType_Mouth
   m_EditorClassIdentifier: 
   TypeId: 2
+  TypeName: Mouths
   Items:
   - {fileID: 11400000, guid: a0445d2ce390e99428e22b80bb6e309a, type: 2}
   - {fileID: 11400000, guid: a94006a1b5dd9684daecc35d15b79600, type: 2}

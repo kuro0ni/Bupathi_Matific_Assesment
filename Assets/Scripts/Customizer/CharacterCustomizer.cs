@@ -74,4 +74,9 @@ public class CharacterCustomizer : MonoBehaviour
             component.ClearRender();
         }
     }
+
+    public ICosmeticComponent [] GetCharacterCosmeticComponents()
+    {
+        return CosmeticComponentList;
+    }
 }

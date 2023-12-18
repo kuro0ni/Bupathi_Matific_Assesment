@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: CosmeticType_Eyes
   m_EditorClassIdentifier: 
   TypeId: 1
+  TypeName: Eyes
   Items:
   - {fileID: 11400000, guid: 258c764d844fc9d4ba24b2591cf46398, type: 2}
   - {fileID: 11400000, guid: 96af5a623d067fa43b67fd3e48e5f38b, type: 2}

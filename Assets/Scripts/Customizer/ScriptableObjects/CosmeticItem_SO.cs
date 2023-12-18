@@ -10,4 +10,5 @@ public class CosmeticItem_SO : ScriptableObject
     public int MinLevel;
     public CosmeticItemState State;
     public Sprite Sprite;
+    public Sprite Icon;
 }

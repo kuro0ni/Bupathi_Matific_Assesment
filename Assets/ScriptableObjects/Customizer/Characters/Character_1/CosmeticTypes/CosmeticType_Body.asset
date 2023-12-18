@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: CosmeticType_Body
   m_EditorClassIdentifier: 
   TypeId: 0
+  TypeName: Body
   Items:
   - {fileID: 11400000, guid: d28d5fb00204a044eb9272eb109a56a4, type: 2}

@@ -7,6 +7,8 @@ public class CosmeticType_SO : ScriptableObject
 {
     [SerializeField]
     private int TypeId;
+    [SerializeField] 
+    private string TypeName;
     [SerializeField]
     private List<CosmeticItem_SO> Items;
 
@@ -26,5 +28,15 @@ public class CosmeticType_SO : ScriptableObject
     public int GetTypeId() 
     { 
         return TypeId; 
+    }
+
+    public string GetTypeName()
+    {
+        return TypeName;
+    }
+
+    public List<CosmeticItem_SO> GetCosmeticItems()
+    {
+        return Items;
     }
 }

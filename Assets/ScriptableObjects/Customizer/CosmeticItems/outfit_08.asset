@@ -17,3 +17,4 @@ MonoBehaviour:
   MinLevel: 0
   State: 0
   Sprite: {fileID: 21300000, guid: 1ccbbe243a4c7ab48b423e14dabbb64b, type: 3}
+  Icon: {fileID: 21300000, guid: 465d4533ef2bc034b8bc5bf5323380d3, type: 3}

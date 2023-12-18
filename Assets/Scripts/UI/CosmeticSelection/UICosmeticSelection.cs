@@ -15,10 +15,11 @@ public class UICosmeticSelection : MonoBehaviour
     private GameObject TabGraphicPrefab;
     [SerializeField]
     private GameObject TabBodyItemGraphicPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
@@ -31,21 +32,32 @@ public class UICosmeticSelection : MonoBehaviour
     {
         ICosmeticComponent [] cosmeticComponents = CharacterCustomizer.GetCharacterCosmeticComponents();
 
+        IUserStatManager userStatManager = (IUserStatManager)ServiceLocator.Current.Get(Service.USER_STAT_MANAGER);
+        UserData userData = userStatManager.GetUserData();
+
         foreach (ICosmeticComponent cosmeticComp in cosmeticComponents)
         {
             UITab tab = PopulateNewTab(cosmeticComp);
-
-            GameObject cosmeticItemGO = Instantiate(TabBodyItemGraphicPrefab);
-            UICosmeticTabItem cosmeticItem = cosmeticItemGO.GetComponent<UICosmeticTabItem>();
-
+         
             foreach (CosmeticItem_SO itemSO in cosmeticComp.GetCosmeticType().GetCosmeticItems())
             {
+                GameObject cosmeticItemGO = Instantiate(TabBodyItemGraphicPrefab);
+                UICosmeticTabItem cosmeticTabItem = cosmeticItemGO.GetComponent<UICosmeticTabItem>();
+
                 CosmeticItem item = data.GetItem(itemSO.ItemId);
-                //cosmeticItem.PopulateItem(item, OnCosmeticItemSelected);
+                item.TypeId = cosmeticComp.GetCosmeticType().GetTypeId();
+
+                cosmeticTabItem.PopulateItem(item, itemSO, userData);
+                cosmeticTabItem.ItemBtn.onClick.AddListener(delegate { OnCosmeticItemSelected(cosmeticTabItem); } );
+
+                tab.AddNewItem(cosmeticItemGO);
             }
-        
-            tab.AddNewItem(cosmeticItemGO);
-        }        
+
+            tab.TabUnSelected();
+          
+        }
+
+       TabController.SetActiveTab(0);
     }
 
     private UITab PopulateNewTab(ICosmeticComponent cosmeticComp)
@@ -58,8 +70,10 @@ public class UICosmeticSelection : MonoBehaviour
         return tab;
     }
 
-    public void OnCosmeticItemSelected()
+    public void OnCosmeticItemSelected(UICosmeticTabItem cosmeticTabItem)
     {
-
+        CharacterCustomizer.ApplyCosmetic(cosmeticTabItem.CosmeticItemData);
     }
+
+
 }

@@ -252,6 +252,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14dbd12c8335ac4b9b6702f974a7f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CosmeticItemData:
+    ItemId: 0
+    Price: 0
+    MinLevel: 0
+    State: 0
+  ItemBtn: {fileID: 3908052208394611056}
+  ItemIcon: {fileID: 3908052208910032414}
+  PriceLabel: {fileID: 3908052209698306147}
+  PriceText: {fileID: 3908052208709259297}
+  LevelLabel: {fileID: 3908052207941490333}
+  LevelText: {fileID: 3908052209881423515}
+  LevelLockGraphic: {fileID: 3908052208836475116}
 --- !u!1 &3908052208709259299
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,11 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class UITab : MonoBehaviour
 {
     private UITabBody TabBody;
     private GameObject TabGraphic;
+    public Button TabBtn;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,9 +27,14 @@ public class UITab : MonoBehaviour
         TabBody = tabBody;
     }
 
-    public void OnTabClicked()
+    public void TabSelected()
     {
         TabBody.Show();
+    }
+
+    public void TabUnSelected()
+    {
+        TabBody.Hide();
     }
 
     public void AddNewItem(GameObject itemGO)

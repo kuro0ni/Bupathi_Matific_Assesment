@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public class UICosmeticTabItem : MonoBehaviour
 {
-    [SerializeField]
-    private CosmeticItem CosmeticItemData;
+    //[SerializeField]
+    public CosmeticItem CosmeticItemData;
 
     [Header("UI Elements")]
     public Button ItemBtn;
@@ -35,35 +35,58 @@ public class UICosmeticTabItem : MonoBehaviour
         
     }
 
-    public void PopulateItem(CosmeticItem itemData, CosmeticItem_SO itemSO, UnityAction OnItemSelected)
+    public void PopulateItem(CosmeticItem itemData, CosmeticItem_SO itemSO, UserData userData)
     {
-        ItemBtn.onClick.AddListener(OnItemSelected);
+        CosmeticItemData = itemData;
+
+        ItemBtn.onClick.RemoveAllListeners();
 
         ItemIcon.sprite = itemSO.Icon;
-        
+
+        itemData.SetItemState(userData);
+
+        SetGraphicsByState(itemData, userData);
+
+        PriceText.text = itemData.Price.ToString();
+        LevelText.text = $"Lvl.{itemData.MinLevel}";
+    }
+
+    private void SetGraphicsByState(CosmeticItem itemData, UserData userData)
+    {
         switch (itemData.State)
         {
             case CosmeticItemState.AVAILABLE:
                 PriceLabel.gameObject.SetActive(false);
                 LevelLabel.gameObject.SetActive(false);
+                LevelLockGraphic.gameObject.SetActive(false);
 
                 ItemBtn.interactable = true;
                 break;
+
             case CosmeticItemState.PURCHASABLE:
                 PriceLabel.gameObject.SetActive(true);
                 LevelLabel.gameObject.SetActive(false);
+                LevelLockGraphic.gameObject.SetActive(false);
+
+                ItemBtn.interactable = true;
+
+                if (userData.Coins < itemData.Price)
+                {
+                    ItemBtn.interactable = false;
+                }
 
                 break;
+
             case CosmeticItemState.LOCKED:
                 PriceLabel.gameObject.SetActive(false);
                 LevelLabel.gameObject.SetActive(true);
+                LevelLockGraphic.gameObject.SetActive(true);
 
                 ItemBtn.interactable = false;
                 break;
+
             default:
                 break;
         }
     }
-
-
 }

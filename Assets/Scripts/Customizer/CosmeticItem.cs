@@ -12,6 +12,28 @@ public class CosmeticItem
     public int Price;
     public int MinLevel;
     public CosmeticItemState State;
+
+    public void SetItemState(UserData userData)
+    {
+        if (State == CosmeticItemState.AVAILABLE) return;
+
+        if (userData.Level < MinLevel)
+        {
+            State = CosmeticItemState.LOCKED;
+        }
+        else
+        {
+            if (Price <= 0)
+            {
+                State = CosmeticItemState.AVAILABLE;
+            }
+            else
+            {
+                State = CosmeticItemState.PURCHASABLE;
+            }           
+        }
+
+    }
 }
 
 public enum CosmeticItemState

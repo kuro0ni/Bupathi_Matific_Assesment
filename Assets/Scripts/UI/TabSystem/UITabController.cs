@@ -10,7 +10,9 @@ public class UITabController : MonoBehaviour
     public GameObject TabPrefab;
     public GameObject TabBodyPrefab;
 
-    
+    private List<UITab> TabList;
+    private int ActiveTab = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,13 @@ public class UITabController : MonoBehaviour
 
         AddNewTabBody(tab);
 
+        if (TabList == null) { TabList = new List<UITab>(); }
+
+        TabList.Add(tab);
+
+        int tabIndex = TabList.Count - 1;
+        tab.TabBtn.onClick.AddListener(delegate { SetActiveTab(tabIndex); });
+
         return tab;
     }
 
@@ -42,5 +51,13 @@ public class UITabController : MonoBehaviour
         UITabBody tabBody = tabBodyGO.GetComponent<UITabBody>();
 
         tab.SetTabBody(tabBody);
+    }
+
+    public void SetActiveTab(int tabIndex)
+    {
+        TabList[ActiveTab].TabUnSelected();
+
+        ActiveTab = tabIndex;
+        TabList[ActiveTab].TabSelected();
     }
 }

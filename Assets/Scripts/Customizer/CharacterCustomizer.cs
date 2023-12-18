@@ -1,6 +1,7 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,11 +12,12 @@ public class CharacterCustomizer : MonoBehaviour
     [Expandable]
     [SerializeField]
     private CharacterPreset_SO CharacterPreset;
-
+    [SerializeField]
+    private GameObject CustomizerComponents;
     // Start is called before the first frame update
     void Start() 
     {
-        CosmeticComponentList = GetComponentsInChildren<ICosmeticComponent>();
+    
     }
     
     public void ApplyCosmetic(CosmeticItem item)
@@ -77,6 +79,11 @@ public class CharacterCustomizer : MonoBehaviour
 
     public ICosmeticComponent [] GetCharacterCosmeticComponents()
     {
+        if (CosmeticComponentList == null)
+        {
+            CosmeticComponentList = CustomizerComponents.transform.GetComponentsInChildren<ICosmeticComponent>();
+        }
+
         return CosmeticComponentList;
     }
 }

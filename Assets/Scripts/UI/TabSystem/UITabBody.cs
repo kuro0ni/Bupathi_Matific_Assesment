@@ -18,16 +18,17 @@ public class UITabBody : MonoBehaviour
 
     public void Show()
     {
-
+        gameObject.SetActive(true);
     }
 
     public void Hide()
     {
-
+        gameObject.SetActive(false);
     }
 
     public void AddNewItem(GameObject itemGO)
     {
-        itemGO.transform.parent = transform;
+        itemGO.transform.SetParent(transform);
+
     }
 }

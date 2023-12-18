@@ -15,16 +15,4 @@ MonoBehaviour:
   PresetId: f0f58a23-f578-4f5b-8f11-97a77818debb
   Name: Floofy
   BodyCosmetic: {fileID: 11400000, guid: 5f5a3dca76a1f0a409ac4ce0d80c773d, type: 2}
-  Cosmetics:
-  - TypeId: 1
-    ItemId: 5
-    Sprite: {fileID: 0}
-  - TypeId: 2
-    ItemId: 5
-    Sprite: {fileID: 0}
-  - TypeId: 3
-    ItemId: 4
-    Sprite: {fileID: 0}
-  - TypeId: 0
-    ItemId: 0
-    Sprite: {fileID: 0}
+  Cosmetics: []

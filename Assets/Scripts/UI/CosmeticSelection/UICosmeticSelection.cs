@@ -41,8 +41,10 @@ public class UICosmeticSelection : MonoBehaviour
          
             foreach (CosmeticItem_SO itemSO in cosmeticComp.GetCosmeticType().GetCosmeticItems())
             {
-                GameObject cosmeticItemGO = Instantiate(TabBodyItemGraphicPrefab);
-                UICosmeticTabItem cosmeticTabItem = cosmeticItemGO.GetComponent<UICosmeticTabItem>();
+                GameObject cosmeticTabItemGO = Instantiate(TabBodyItemGraphicPrefab);
+                cosmeticTabItemGO.name = itemSO.Sprite.name;
+
+                UICosmeticTabItem cosmeticTabItem = cosmeticTabItemGO.GetComponent<UICosmeticTabItem>();
 
                 CosmeticItem item = data.GetItem(itemSO.ItemId);
                 item.TypeId = cosmeticComp.GetCosmeticType().GetTypeId();
@@ -50,7 +52,7 @@ public class UICosmeticSelection : MonoBehaviour
                 cosmeticTabItem.PopulateItem(item, itemSO, userData);
                 cosmeticTabItem.ItemBtn.onClick.AddListener(delegate { OnCosmeticItemSelected(cosmeticTabItem); } );
 
-                tab.AddNewItem(cosmeticItemGO);
+                tab.AddNewItem(cosmeticTabItemGO);
             }
 
             tab.TabUnSelected();
@@ -72,6 +74,8 @@ public class UICosmeticSelection : MonoBehaviour
 
     public void OnCosmeticItemSelected(UICosmeticTabItem cosmeticTabItem)
     {
+        print(cosmeticTabItem.gameObject.name);
+        //print(JsonUtility.ToJson(cosmeticTabItem.CosmeticItemData));
         CharacterCustomizer.ApplyCosmetic(cosmeticTabItem.CosmeticItemData);
     }
 

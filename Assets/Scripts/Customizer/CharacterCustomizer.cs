@@ -17,7 +17,7 @@ public class CharacterCustomizer : MonoBehaviour
     // Start is called before the first frame update
     void Start() 
     {
-    
+        CharacterPreset.ResetCosmetics();
     }
     
     public void ApplyCosmetic(CosmeticItem item)

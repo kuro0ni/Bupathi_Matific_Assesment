@@ -29,7 +29,8 @@ public class CharacterPreset_SO : ScriptableObject
         {
             if (Cosmetics[i].TypeId == item.TypeId)
             {
-                Cosmetics[i].ItemId = item.ItemId;
+                //Cosmetics[i].ItemId = item.ItemId;
+                Cosmetics[i] = item;
                 isNewItem = false;
                 return;
             }
@@ -37,7 +38,7 @@ public class CharacterPreset_SO : ScriptableObject
 
         if (isNewItem)
         {
-            Cosmetics.Add(item);
+            Cosmetics.Add(item); 
         }
     }
     
@@ -55,6 +56,11 @@ public class CharacterPreset_SO : ScriptableObject
     public List<CosmeticItem> GetCosmetics() 
     { 
         return Cosmetics; 
+    }
+
+    public void ResetCosmetics()
+    {
+        Cosmetics.Clear();
     }
 
 }

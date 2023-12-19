@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class UICosmeticTabItem : MonoBehaviour
 {
-    //[SerializeField]
+    [SerializeField]
     public CosmeticItem CosmeticItemData;
 
     [Header("UI Elements")]

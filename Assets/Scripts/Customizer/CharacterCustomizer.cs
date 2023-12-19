@@ -32,36 +32,36 @@ public class CharacterCustomizer : MonoBehaviour
         }
     }
 
-    [Button("Random Cosmetic")]
-    public void ApplyCosmeticOnEditor()
-    {
-        if (CosmeticComponentList == null) 
-        {
-            CosmeticComponentList = GetComponentsInChildren<ICosmeticComponent>();
-        }
+    //[Button("Random Cosmetic")]
+    //public void ApplyCosmeticOnEditor()
+    //{
+    //    if (CosmeticComponentList == null) 
+    //    {
+    //        CosmeticComponentList = GetComponentsInChildren<ICosmeticComponent>();
+    //    }
 
-        CosmeticItem item = new CosmeticItem();
-        item.ItemId = Random.Range(0, 10);
-        item.TypeId = Random.Range(1, 4);
+    //    CosmeticItem item = new CosmeticItem();
+    //    item.ItemId = Random.Range(0, 10);
+    //    item.TypeId = Random.Range(1, 4);
 
-        ApplyCosmetic(item);
-    }
+    //    ApplyCosmetic(item);
+    //}
 
-    [Button("Apply Preset")]
-    public void ApplyPresetOnEditor()
-    {
-        if (CosmeticComponentList == null)
-        {
-            CosmeticComponentList = GetComponentsInChildren<ICosmeticComponent>();
-        }
+    //[Button("Apply Preset")]
+    //public void ApplyPresetOnEditor()
+    //{
+    //    if (CosmeticComponentList == null)
+    //    {
+    //        CosmeticComponentList = GetComponentsInChildren<ICosmeticComponent>();
+    //    }
 
-        List<CosmeticItem> cosmetics = CharacterPreset.GetCosmetics();
+    //    List<CosmeticItem> cosmetics = CharacterPreset.GetCosmetics();
 
-        foreach (CosmeticItem item in cosmetics)
-        {
-            ApplyCosmetic(item);
-        }   
-    }
+    //    foreach (CosmeticItem item in cosmetics)
+    //    {
+    //        ApplyCosmetic(item);
+    //    }   
+    //}
 
     [Button("Reset Cosmetics")]
     public void ResetCosmetics()

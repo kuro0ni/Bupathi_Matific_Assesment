@@ -38,8 +38,8 @@ public class UICosmeticSelection : MonoBehaviour
 
         ICosmeticComponent [] cosmeticComponents = CharacterCustomizer.GetCharacterCosmeticComponents();
 
-        IUserStatManager userStatManager = (IUserStatManager)ServiceLocator.Current.Get(Service.USER_STAT_MANAGER);
-        UserData userData = userStatManager.GetUserData();
+        IUserDataGetter userStatManager = (IUserDataGetter)ServiceLocator.Current.Get(Service.USER_DATA_GETTER);
+        UserData userData = userStatManager.GetData();
 
         foreach (ICosmeticComponent cosmeticComp in cosmeticComponents)
         {
@@ -94,10 +94,10 @@ public class UICosmeticSelection : MonoBehaviour
     {
         bool isPurchaseSuccessfull = false;
 
-        IUserStatManager userStatManager = (IUserStatManager)ServiceLocator.Current.Get(Service.USER_STAT_MANAGER);
+        IUserDataGetter userDataGetter = (IUserDataGetter)ServiceLocator.Current.Get(Service.USER_DATA_GETTER);
         ICosmeticDataGetter cosmeticDataGetter = (ICosmeticDataGetter)ServiceLocator.Current.Get(Service.COSMETIC_DATA_GETTER);
 
-        UserData userData = userStatManager.GetUserData();
+        UserData userData = userDataGetter.GetData();
 
         if (userData.Coins >= cosmeticTabItem.CosmeticItemData.Price)
         {
@@ -106,7 +106,7 @@ public class UICosmeticSelection : MonoBehaviour
 
             RefreshItemsEvent.Invoke(userData);
 
-            userStatManager.SetUserData(userData);
+            userDataGetter.SetData(userData);
 
             cosmeticDataGetter.SetData(CosmeticData);
 

@@ -23,11 +23,11 @@ public class UIPlayerStats : MonoBehaviour
 
     private UserData GetUserData()
     {
-        IUserStatManager userStatManager = (IUserStatManager)ServiceLocator.Current.Get(Service.USER_STAT_MANAGER);
+        IUserDataGetter userDataGetter = (IUserDataGetter)ServiceLocator.Current.Get(Service.USER_DATA_GETTER);
 
-        userStatManager.ListenToOnUserDataChange(OnUserDataChange);
+        userDataGetter.ListenToOnUserDataChange(OnUserDataChange);
 
-        UserData userData = userStatManager.GetUserData();
+        UserData userData = userDataGetter.GetData();
 
         return userData;
     }
@@ -40,6 +40,8 @@ public class UIPlayerStats : MonoBehaviour
 
     private void OnUserDataChange(UserData data)
     {
+        Debug.Log("On user data change event raised");
+        Debug.Log(data.Coins);
         PopulateStats(data);
     }
 }

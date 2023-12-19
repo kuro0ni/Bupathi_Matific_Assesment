@@ -694,11 +694,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &892851220 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6442028179554422544, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
-  m_PrefabInstance: {fileID: 8381192137537287703}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &897226647 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2353719904228751232, guid: 74d2164b4b3e492408cd016f36dd6bb5, type: 3}
@@ -852,7 +847,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1182558797}
         m_TargetAssemblyTypeName: CosmeticsManager, Assembly-CSharp
-        m_MethodName: BuildCosmeticsDatabase
+        m_MethodName: LoadCosmeticsDatabase
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1538,11 +1533,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerLevelText: {fileID: 1112397603}
   PlayerCoinsText: {fileID: 391342086}
---- !u!1 &1499027885 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8381192135539601009, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
-  m_PrefabInstance: {fileID: 8381192137537287703}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1836405606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1658,26 +1648,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8381192135539601008, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
   m_PrefabInstance: {fileID: 8381192137537287703}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1499027885}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d879d53af0505d4b93d84172ed0579f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2129157224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1499027885}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 365069942401faf41b777da950b25d8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RenderItem: {fileID: 11400000, guid: c86f35ecc05cdfb408105ba0e7451326, type: 2}
-  FocusedRenderer: {fileID: 892851220}
 --- !u!1001 &2353719905115217943
 PrefabInstance:
   m_ObjectHideFlags: 0

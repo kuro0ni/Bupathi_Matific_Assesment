@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,7 @@ public class CosmeticComponent : MonoBehaviour, ICosmeticComponent
         Debug.Log($"Rendering item {itemId}");
         SelectedItemId = itemId;
         CosmeticRenderer.sprite = CosmeticType.GetItem(itemId).Sprite;
+        CosmeticRenderer.transform.localPosition = CosmeticType.GetItem(itemId).PositionOffset;
     }
 
     public CosmeticType_SO GetCosmeticType()
@@ -30,5 +32,12 @@ public class CosmeticComponent : MonoBehaviour, ICosmeticComponent
     public void ClearRender()
     {
         CosmeticRenderer.sprite = null;
+    }
+
+
+
+    public GameObject GetRendererGameObject()
+    {
+        return CosmeticRenderer.gameObject;
     }
 }

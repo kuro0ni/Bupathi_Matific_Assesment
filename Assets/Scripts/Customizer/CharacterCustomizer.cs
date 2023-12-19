@@ -68,7 +68,7 @@ public class CharacterCustomizer : MonoBehaviour
     {
         if (CosmeticComponentList == null)
         {
-            CosmeticComponentList = GetComponentsInChildren<ICosmeticComponent>();
+            CosmeticComponentList = CustomizerComponents.GetComponentsInChildren<ICosmeticComponent>();
         }
 
         foreach (ICosmeticComponent component in CosmeticComponentList)

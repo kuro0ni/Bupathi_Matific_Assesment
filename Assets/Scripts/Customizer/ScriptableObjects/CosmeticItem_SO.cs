@@ -11,4 +11,5 @@ public class CosmeticItem_SO : ScriptableObject
     public CosmeticItemState State;
     public Sprite Sprite;
     public Sprite Icon;
+    public Vector3 PositionOffset;
 }

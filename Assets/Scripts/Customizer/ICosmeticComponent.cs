@@ -8,4 +8,6 @@ public interface ICosmeticComponent
     CosmeticType_SO GetCosmeticType();
 
     void ClearRender();
+
+    GameObject GetRendererGameObject();
 }

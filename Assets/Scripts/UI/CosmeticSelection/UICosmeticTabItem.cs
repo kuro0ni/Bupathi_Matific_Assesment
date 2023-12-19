@@ -35,7 +35,7 @@ public class UICosmeticTabItem : MonoBehaviour
         
     }
 
-    public void PopulateItem(CosmeticItem itemData, CosmeticItem_SO itemSO, UserData userData)
+    public void PopulateItem(CosmeticItem itemData, CosmeticItem_SO itemSO, UserData userData, UnityEvent<UserData> refreshItemEvent)
     {
         CosmeticItemData = itemData;
 
@@ -43,12 +43,14 @@ public class UICosmeticTabItem : MonoBehaviour
 
         ItemIcon.sprite = itemSO.Icon;
 
-        itemData.SetItemState(userData);
+        itemData.SetItemStateByUserData(userData);
 
         SetGraphicsByState(itemData, userData);
 
         PriceText.text = itemData.Price.ToString();
         LevelText.text = $"Lvl.{itemData.MinLevel}";
+
+        refreshItemEvent.AddListener(RefreshItem);
     }
 
     private void SetGraphicsByState(CosmeticItem itemData, UserData userData)
@@ -88,5 +90,10 @@ public class UICosmeticTabItem : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void RefreshItem(UserData data)
+    {
+        SetGraphicsByState(CosmeticItemData, data);
     }
 }

@@ -40,4 +40,6 @@ public class CosmeticsManager : MonoBehaviour
 
         OnCosmeticDataLoaded.Invoke(cosmeticData);
     }
+
+
 }

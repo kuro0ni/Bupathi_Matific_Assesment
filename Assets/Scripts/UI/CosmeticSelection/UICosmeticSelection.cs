@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class UICosmeticSelection : MonoBehaviour
 {
@@ -16,10 +17,13 @@ public class UICosmeticSelection : MonoBehaviour
     [SerializeField]
     private GameObject TabBodyItemGraphicPrefab;
 
+    private CosmeticData CosmeticData;
+
+    public UnityEvent<UserData> RefreshItemsEvent;
     // Start is called before the first frame update
     void Start()
     {
-       
+
     }
 
     // Update is called once per frame
@@ -30,6 +34,8 @@ public class UICosmeticSelection : MonoBehaviour
 
     public void PopulateUI(CosmeticData data)
     {
+        CosmeticData = data;
+
         ICosmeticComponent [] cosmeticComponents = CharacterCustomizer.GetCharacterCosmeticComponents();
 
         IUserStatManager userStatManager = (IUserStatManager)ServiceLocator.Current.Get(Service.USER_STAT_MANAGER);
@@ -49,7 +55,7 @@ public class UICosmeticSelection : MonoBehaviour
                 CosmeticItem item = data.GetItem(itemSO.ItemId);
                 item.TypeId = cosmeticComp.GetCosmeticType().GetTypeId();
 
-                cosmeticTabItem.PopulateItem(item, itemSO, userData);
+                cosmeticTabItem.PopulateItem(item, itemSO, userData, RefreshItemsEvent);
                 cosmeticTabItem.ItemBtn.onClick.AddListener(delegate { OnCosmeticItemSelected(cosmeticTabItem); } );
 
                 tab.AddNewItem(cosmeticTabItemGO);
@@ -74,10 +80,39 @@ public class UICosmeticSelection : MonoBehaviour
 
     public void OnCosmeticItemSelected(UICosmeticTabItem cosmeticTabItem)
     {
-        print(cosmeticTabItem.gameObject.name);
-        //print(JsonUtility.ToJson(cosmeticTabItem.CosmeticItemData));
+        if (cosmeticTabItem.CosmeticItemData.State == CosmeticItemState.PURCHASABLE)
+        {
+            bool isPurchaseSuccessfull = PurchaseCosmeticItem(cosmeticTabItem);
+
+            if (!isPurchaseSuccessfull) return;
+        }
+
         CharacterCustomizer.ApplyCosmetic(cosmeticTabItem.CosmeticItemData);
     }
 
+    private bool PurchaseCosmeticItem(UICosmeticTabItem cosmeticTabItem)
+    {
+        bool isPurchaseSuccessfull = false;
 
+        IUserStatManager userStatManager = (IUserStatManager)ServiceLocator.Current.Get(Service.USER_STAT_MANAGER);
+        ICosmeticDataGetter cosmeticDataGetter = (ICosmeticDataGetter)ServiceLocator.Current.Get(Service.COSMETIC_DATA_GETTER);
+
+        UserData userData = userStatManager.GetUserData();
+
+        if (userData.Coins >= cosmeticTabItem.CosmeticItemData.Price)
+        {
+            userData.Coins -= cosmeticTabItem.CosmeticItemData.Price;
+            cosmeticTabItem.CosmeticItemData.SetItemState(CosmeticItemState.AVAILABLE);
+
+            RefreshItemsEvent.Invoke(userData);
+
+            userStatManager.SetUserData(userData);
+
+            cosmeticDataGetter.SetData(CosmeticData);
+
+            isPurchaseSuccessfull = true;
+        }
+
+        return isPurchaseSuccessfull;
+    }
 }

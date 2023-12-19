@@ -13,7 +13,7 @@ public class CosmeticItem
     public int MinLevel;
     public CosmeticItemState State;
 
-    public void SetItemState(UserData userData)
+    public void SetItemStateByUserData(UserData userData)
     {
         if (State == CosmeticItemState.AVAILABLE) return;
 
@@ -33,6 +33,11 @@ public class CosmeticItem
             }           
         }
 
+    }
+
+    public void SetItemState(CosmeticItemState state)
+    {
+        State = state;
     }
 }
 

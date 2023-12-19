@@ -60,4 +60,9 @@ public class UITabController : MonoBehaviour
         ActiveTab = tabIndex;
         TabList[ActiveTab].TabSelected();
     }
+
+    public List<UITab> GetTabList()
+    {
+        return TabList;
+    }
 }

@@ -11,7 +11,8 @@ public class UIPlayerStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PopulateStats();
+        UserData userData = GetUserData();
+        PopulateStats(userData);
     }
 
     // Update is called once per frame
@@ -20,12 +21,25 @@ public class UIPlayerStats : MonoBehaviour
         
     }
 
-    private void PopulateStats()
+    private UserData GetUserData()
     {
         IUserStatManager userStatManager = (IUserStatManager)ServiceLocator.Current.Get(Service.USER_STAT_MANAGER);
+
+        userStatManager.ListenToOnUserDataChange(OnUserDataChange);
+
         UserData userData = userStatManager.GetUserData();
 
+        return userData;
+    }
+
+    private void PopulateStats(UserData userData)
+    {       
         PlayerLevelText.text = $"Lvl.{userData.Level}";
         PlayerCoinsText.text = userData.Coins.ToString();
+    }
+
+    private void OnUserDataChange(UserData data)
+    {
+        PopulateStats(data);
     }
 }

@@ -4,32 +4,43 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEditor.Progress;
 
 public class CharacterCustomizer : MonoBehaviour
 {
     [SerializeField]
-    private ICosmeticComponent [] CosmeticComponentList;
+    private ICosmeticComponent[] CosmeticComponentList;
     [Expandable]
     [SerializeField]
-    private CharacterPreset_SO CharacterPreset;
+    private CharacterPreset_SO CharacterPresetSO;
     [SerializeField]
     private GameObject CustomizerComponents;
+
     // Start is called before the first frame update
-    void Start() 
+    void Start()
     {
-        CharacterPreset.ResetCosmetics();
+        Init();
     }
-    
+
+    private void Init()
+    {
+        CharacterPresetSO.ResetCosmetics();
+        CharacterPresetSO.LoadPreset();
+        ApplyPreset();
+    }
+
     public void ApplyCosmetic(CosmeticItem item)
     {
         foreach (ICosmeticComponent component in CosmeticComponentList)
         {
             if (component.GetCosmeticType().GetTypeId() == item.TypeId)
             {
-                CharacterPreset.UpdatePreset(item);
+                CharacterPresetSO.UpdatePreset(item);
                 component.RenderItem(item.ItemId);
             }
         }
+
+        CharacterPresetSO.SavePreset();
     }
 
     //[Button("Random Cosmetic")]
@@ -47,21 +58,22 @@ public class CharacterCustomizer : MonoBehaviour
     //    ApplyCosmetic(item);
     //}
 
-    //[Button("Apply Preset")]
-    //public void ApplyPresetOnEditor()
-    //{
-    //    if (CosmeticComponentList == null)
-    //    {
-    //        CosmeticComponentList = GetComponentsInChildren<ICosmeticComponent>();
-    //    }
+    [Button("Apply Preset")]
+    public void ApplyPreset()
+    {
+        if (CosmeticComponentList == null)
+        {
+            CosmeticComponentList = GetComponentsInChildren<ICosmeticComponent>();
+        }
 
-    //    List<CosmeticItem> cosmetics = CharacterPreset.GetCosmetics();
+        List<CosmeticItem> cosmetics = CharacterPresetSO.GetCosmetics();
 
-    //    foreach (CosmeticItem item in cosmetics)
-    //    {
-    //        ApplyCosmetic(item);
-    //    }   
-    //}
+        for (int i = 0; i < cosmetics.Count; i++)
+        {
+            ApplyCosmetic(cosmetics[i]);
+        }
+
+    }
 
     [Button("Reset Cosmetics")]
     public void ResetCosmetics()
@@ -77,7 +89,7 @@ public class CharacterCustomizer : MonoBehaviour
         }
     }
 
-    public ICosmeticComponent [] GetCharacterCosmeticComponents()
+    public ICosmeticComponent[] GetCharacterCosmeticComponents()
     {
         if (CosmeticComponentList == null)
         {
@@ -86,4 +98,7 @@ public class CharacterCustomizer : MonoBehaviour
 
         return CosmeticComponentList;
     }
+
+
+
 }

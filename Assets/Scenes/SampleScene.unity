@@ -1824,15 +1824,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2396451558168308997, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
       propertyPath: m_Size.x
-      value: 1.44
+      value: 1.46
       objectReference: {fileID: 0}
     - target: {fileID: 2396451558168308997, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
       propertyPath: m_Size.y
-      value: 1
+      value: 1.18
       objectReference: {fileID: 0}
     - target: {fileID: 2396451558168308997, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
       propertyPath: m_Sprite
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2396451558168308997, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2396451558168308997, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -1871,8 +1875,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6774548085392251229, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.154
+      objectReference: {fileID: 0}
+    - target: {fileID: 6774548085392251229, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.21
+      value: 0.085
       objectReference: {fileID: 0}
     - target: {fileID: 7334352418848452172, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
       propertyPath: m_Size.x
@@ -1890,6 +1898,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8381192135539601008, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
+      propertyPath: CharacterPresetSO
+      value: 
+      objectReference: {fileID: 11400000, guid: af719b345ff34ae4a8f5768be0ade4ce, type: 2}
     - target: {fileID: 8381192135539601008, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
       propertyPath: CustomizerComponents
       value: 

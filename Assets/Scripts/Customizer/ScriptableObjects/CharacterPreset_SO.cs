@@ -63,4 +63,76 @@ public class CharacterPreset_SO : ScriptableObject
         Cosmetics.Clear();
     }
 
+    public CharacterPreset GetPresetData()
+    {
+        CharacterPreset preset = new CharacterPreset();
+        preset.PresetId = PresetId;
+        preset.BodyCosmetic = BodyCosmetic.GetTypeId();
+        preset.Cosmetics = new List<int>();
+
+        foreach (CosmeticItem item in Cosmetics)
+        {
+            preset.Cosmetics.Add(item.ItemId);
+        }
+
+        return preset;
+    }
+
+    public void LoadPreset()
+    {
+        IUserDataGetter userDataGetter = ServiceLocator.Current.Get<IUserDataGetter>(Service.USER_DATA_GETTER);
+
+        UserData userData = userDataGetter.GetData();
+
+        for (int i = 0; i < userData.MyCharacters.Count; i++)
+        {
+            if (userData.MyCharacters[i].PresetId == PresetId)
+            {
+                PopulatePreset(userData.MyCharacters[i]);
+            }
+        }
+    }
+
+    private void PopulatePreset(CharacterPreset presetData)
+    {
+        Name = presetData.CharacterName;
+        ICosmeticDataGetter cosmeticDataGetter = ServiceLocator.Current.Get<ICosmeticDataGetter>(Service.COSMETIC_DATA_GETTER);
+
+        foreach (int itemId in presetData.Cosmetics)
+        {
+            CosmeticItem item = cosmeticDataGetter.GetItemDataById(itemId);
+            UpdatePreset(item);
+        }       
+    }
+
+    public void SavePreset()
+    {
+        if (!Application.isPlaying) return;
+
+        CharacterPreset preset = GetPresetData();
+
+        IUserDataGetter userDataGetter = ServiceLocator.Current.Get<IUserDataGetter>(Service.USER_DATA_GETTER);
+
+        UserData userData = userDataGetter.GetData();
+
+        bool isNewCharacterPreset = true;
+
+        for (int i = 0; i < userData.MyCharacters.Count; i++)
+        {
+            if (userData.MyCharacters[i].PresetId == preset.PresetId)
+            {
+                userData.MyCharacters[i] = preset;
+                isNewCharacterPreset = false;
+                break;
+            }
+        }
+
+        if (isNewCharacterPreset)
+        {
+            userData.MyCharacters.Add(preset);
+        }
+
+        userDataGetter.SetData(userData);
+    }
+
 }

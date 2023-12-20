@@ -29,6 +29,19 @@ public class CosmeticDataGetter : ICosmeticDataGetter, IGameService
         return Data;
     }
 
+    public CosmeticItem GetItemDataById(int itemId)
+    {
+        foreach (CosmeticItem item in Data.Items)
+        {
+            if (item.ItemId == itemId)
+            {
+                return item;
+            }
+        }
+
+        return null;
+    }
+
     public void SetData<T>(T data)
     {
         GameDataStorage.Upload(data);

@@ -13,7 +13,7 @@ public class ServiceLocator
     {
         Current = new ServiceLocator();
     }
-    public IGameService Get(Service serviceType)
+    public T Get<T>(Service serviceType)
     {
         if (!Services.ContainsKey(serviceType))
         {
@@ -21,7 +21,7 @@ public class ServiceLocator
             throw new InvalidOperationException();
         }
 
-        return Services[serviceType];
+        return (T)Services[serviceType];
     }
 
     public void Register<T>(T service, Service serviceType) where T : IGameService
@@ -52,5 +52,6 @@ public interface IGameService {}
 public enum Service
 {
     USER_DATA_GETTER,
-    COSMETIC_DATA_GETTER
+    COSMETIC_DATA_GETTER,
+    COSMETIC_MANAGER
 }

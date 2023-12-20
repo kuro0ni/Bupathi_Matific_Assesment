@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CosmeticsManager : MonoBehaviour
+public class CosmeticsManager : MonoBehaviour, IGameService
 {
     public List<CosmeticItem_SO> CosmeticItems;
 
     public UnityEvent<CosmeticData> OnCosmeticDataLoaded;
+
+    private void Awake()
+    {
+        ServiceLocator.Current.Register(this, Service.COSMETIC_MANAGER);
+    }
+
     public void LoadCosmeticsDatabase()
     {
         Debug.Log("Loading cosmetics database");
 
-        ICosmeticDataGetter cosmeticDataGetter = (ICosmeticDataGetter)ServiceLocator.Current.Get(Service.COSMETIC_DATA_GETTER);
+        ICosmeticDataGetter cosmeticDataGetter = ServiceLocator.Current.Get<ICosmeticDataGetter>(Service.COSMETIC_DATA_GETTER);
         CosmeticData cosmeticData = cosmeticDataGetter.GetData();
 
         if (cosmeticData == null)
@@ -44,5 +50,18 @@ public class CosmeticsManager : MonoBehaviour
         Debug.Log("Saving cosmetics data");
 
         cosmeticDataGetter.SetData(cosmeticData);
+    }
+
+    public CosmeticItem_SO GetCosmeticSOByID(int itemId)
+    {
+        foreach (CosmeticItem_SO item in CosmeticItems)
+        {
+            if (item.ItemId == itemId)
+            {
+                return item;
+            }
+        }
+
+        return null;
     }
 }

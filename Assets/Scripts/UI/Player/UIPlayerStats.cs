@@ -23,7 +23,7 @@ public class UIPlayerStats : MonoBehaviour
 
     private UserData GetUserData()
     {
-        IUserDataGetter userDataGetter = (IUserDataGetter)ServiceLocator.Current.Get(Service.USER_DATA_GETTER);
+        IUserDataGetter userDataGetter = ServiceLocator.Current.Get<IUserDataGetter>(Service.USER_DATA_GETTER);
 
         userDataGetter.ListenToOnUserDataChange(OnUserDataChange);
 

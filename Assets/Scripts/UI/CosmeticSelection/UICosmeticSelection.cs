@@ -38,7 +38,7 @@ public class UICosmeticSelection : MonoBehaviour
 
         ICosmeticComponent [] cosmeticComponents = CharacterCustomizer.GetCharacterCosmeticComponents();
 
-        IUserDataGetter userStatManager = (IUserDataGetter)ServiceLocator.Current.Get(Service.USER_DATA_GETTER);
+        IUserDataGetter userStatManager = ServiceLocator.Current.Get<IUserDataGetter>(Service.USER_DATA_GETTER);
         UserData userData = userStatManager.GetData();
 
         foreach (ICosmeticComponent cosmeticComp in cosmeticComponents)
@@ -94,8 +94,8 @@ public class UICosmeticSelection : MonoBehaviour
     {
         bool isPurchaseSuccessfull = false;
 
-        IUserDataGetter userDataGetter = (IUserDataGetter)ServiceLocator.Current.Get(Service.USER_DATA_GETTER);
-        ICosmeticDataGetter cosmeticDataGetter = (ICosmeticDataGetter)ServiceLocator.Current.Get(Service.COSMETIC_DATA_GETTER);
+        IUserDataGetter userDataGetter = ServiceLocator.Current.Get<IUserDataGetter>(Service.USER_DATA_GETTER);
+        ICosmeticDataGetter cosmeticDataGetter = ServiceLocator.Current.Get<ICosmeticDataGetter>(Service.COSMETIC_DATA_GETTER);
 
         UserData userData = userDataGetter.GetData();
 

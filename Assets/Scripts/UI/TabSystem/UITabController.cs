@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class UITabController : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class UITabController : MonoBehaviour
     private List<UITab> TabList;
     private int ActiveTab = 0;
 
+    public UnityEvent<UITab, UITab> OnTabSelected;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,14 +57,22 @@ public class UITabController : MonoBehaviour
 
     public void SetActiveTab(int tabIndex)
     {
-        TabList[ActiveTab].TabUnSelected();
+        int prevTab = ActiveTab;
+        TabList[prevTab].TabUnSelected();
 
         ActiveTab = tabIndex;
         TabList[ActiveTab].TabSelected();
+
+        OnTabSelected.Invoke(TabList[prevTab], TabList[ActiveTab]);
     }
 
     public List<UITab> GetTabList()
     {
         return TabList;
+    }
+
+    public UITab GetActiveTab()
+    {
+        return TabList[ActiveTab];
     }
 }

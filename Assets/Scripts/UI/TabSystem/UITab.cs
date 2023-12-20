@@ -10,6 +10,7 @@ public class UITab : MonoBehaviour
     private UITabBody TabBody;
     private GameObject TabGraphic;
     public Button TabBtn;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -29,6 +29,5 @@ public class UITabBody : MonoBehaviour
     public void AddNewItem(GameObject itemGO)
     {
         itemGO.transform.SetParent(transform);
-
     }
 }

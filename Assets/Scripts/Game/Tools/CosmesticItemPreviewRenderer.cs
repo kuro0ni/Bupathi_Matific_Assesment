@@ -1,3 +1,4 @@
+#if (UNITY_EDITOR)
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
@@ -62,3 +63,4 @@ public class CosmesticItemPreviewRenderer : MonoBehaviour
     }
 
 }
+#endif

@@ -1,3 +1,4 @@
+#if (UNITY_EDITOR)
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
@@ -37,3 +38,4 @@ public class CosmeticItemGenerator : MonoBehaviour
         return assetPaths.Length;
     }
 }
+#endif

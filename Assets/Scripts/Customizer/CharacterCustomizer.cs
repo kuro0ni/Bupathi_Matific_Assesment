@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEditor.Progress;
+
 
 public class CharacterCustomizer : MonoBehaviour
 {
@@ -15,8 +15,6 @@ public class CharacterCustomizer : MonoBehaviour
     private CharacterPreset_SO CharacterPresetSO;
     [SerializeField]
     private GameObject CustomizerComponents;
-
-    public UnityEvent OnCharacterPresetApplied;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,8 +71,6 @@ public class CharacterCustomizer : MonoBehaviour
         {
             ApplyCosmetic(cosmetics[i]);
         }
-
-        OnCharacterPresetApplied.Invoke();
     }
 
     [Button("Reset Cosmetics")]

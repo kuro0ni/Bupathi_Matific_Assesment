@@ -798,6 +798,7 @@ MonoBehaviour:
   RefreshItemsEvent:
     m_PersistentCalls:
       m_Calls: []
+  CosmeticTabData: []
 --- !u!1 &1035346007
 GameObject:
   m_ObjectHideFlags: 0
@@ -1812,11 +1813,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1913250028569958932, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.016
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 1913250028569958932, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.069
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 2220732550489990386, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1824,11 +1825,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2396451558168308997, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
       propertyPath: m_Size.x
-      value: 1.46
+      value: 1.64
       objectReference: {fileID: 0}
     - target: {fileID: 2396451558168308997, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
       propertyPath: m_Size.y
-      value: 1.18
+      value: 1.09
       objectReference: {fileID: 0}
     - target: {fileID: 2396451558168308997, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
       propertyPath: m_Sprite
@@ -1876,19 +1877,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6774548085392251229, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.154
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6774548085392251229, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.085
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7334352418848452172, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
       propertyPath: m_Size.x
-      value: 2.8
+      value: 2.31
       objectReference: {fileID: 0}
     - target: {fileID: 7334352418848452172, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
       propertyPath: m_Size.y
-      value: 5.82
+      value: 6.05
       objectReference: {fileID: 0}
     - target: {fileID: 7334352418848452172, guid: 553e3277041cf94439e05c038b0e3ee5, type: 3}
       propertyPath: m_Sprite

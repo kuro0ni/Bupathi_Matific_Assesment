@@ -16,13 +16,14 @@ public class CharacterCustomizer : MonoBehaviour
     [SerializeField]
     private GameObject CustomizerComponents;
 
+    public UnityEvent OnCharacterPresetApplied;
     // Start is called before the first frame update
     void Start()
     {
         Init();
     }
 
-    private void Init()
+    public void Init()
     {
         CharacterPresetSO.ResetCosmetics();
         CharacterPresetSO.LoadPreset();
@@ -73,6 +74,7 @@ public class CharacterCustomizer : MonoBehaviour
             ApplyCosmetic(cosmetics[i]);
         }
 
+        OnCharacterPresetApplied.Invoke();
     }
 
     [Button("Reset Cosmetics")]
@@ -100,5 +102,8 @@ public class CharacterCustomizer : MonoBehaviour
     }
 
 
-
+    public CharacterPreset_SO GetActivePreset()
+    {
+        return CharacterPresetSO;
+    }
 }

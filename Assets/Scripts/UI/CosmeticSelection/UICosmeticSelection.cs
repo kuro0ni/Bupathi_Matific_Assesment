@@ -19,12 +19,14 @@ public class UICosmeticSelection : MonoBehaviour
 
     private CosmeticData CosmeticData;
 
+    [HideInInspector]
     public UnityEvent<UserData> RefreshItemsEvent;
 
     //private LTDescr ActiveCosmeticItemAnim;
 
     [SerializeField]
     private List<CosmeticUITabData> CosmeticTabData;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,35 +45,75 @@ public class UICosmeticSelection : MonoBehaviour
 
         ICosmeticComponent[] cosmeticComponents = CharacterCustomizer.GetCharacterCosmeticComponents();
 
-        IUserDataGetter userStatManager = ServiceLocator.Current.Get<IUserDataGetter>(Service.USER_DATA_GETTER);
-        UserData userData = userStatManager.GetData();
+        IUserDataGetter userDataGetter = ServiceLocator.Current.Get<IUserDataGetter>(Service.USER_DATA_GETTER);
+        UserData userData = userDataGetter.GetData();
+
+        CharacterPreset activePreset = GetActiveCharacterPresetData(userData, CharacterCustomizer.GetActivePreset().GetPresetData().PresetId);
+        List<UICosmeticTabItem> presetActivatedTabItems = new List<UICosmeticTabItem>();
 
         foreach (ICosmeticComponent cosmeticComp in cosmeticComponents)
         {
-            UITab tab = PopulateNewTab(cosmeticComp);
-
-            foreach (CosmeticItem_SO itemSO in cosmeticComp.GetCosmeticType().GetCosmeticItems())
-            {
-                GameObject cosmeticTabItemGO = Instantiate(TabBodyItemGraphicPrefab);
-                cosmeticTabItemGO.name = itemSO.Sprite.name;
-
-                UICosmeticTabItem cosmeticTabItem = cosmeticTabItemGO.GetComponent<UICosmeticTabItem>();
-
-                CosmeticItem item = data.GetItem(itemSO.ItemId);
-                item.TypeId = cosmeticComp.GetCosmeticType().GetTypeId();
-
-                cosmeticTabItem.PopulateItem(item, itemSO, userData, RefreshItemsEvent);
-                cosmeticTabItem.ItemBtn.onClick.AddListener(delegate { OnCosmeticItemSelected(cosmeticTabItem); });
-
-                tab.AddNewItem(cosmeticTabItemGO);
-            }
-
-            tab.TabUnSelected();
-
+            PopulateTabContent(cosmeticComp, data, userData, activePreset, presetActivatedTabItems);
         }
 
         TabController.OnTabSelected.AddListener(OnNewTabSelected);
+        //TabController.SetActiveTab(0);
+        SelectActivePresetItems(presetActivatedTabItems);
         TabController.SetActiveTab(0);
+    }
+
+    private void PopulateTabContent(ICosmeticComponent cosmeticComp, CosmeticData data, UserData userData, CharacterPreset activePreset, List<UICosmeticTabItem> presetActivatedTabItems)
+    {
+        UITab tab = PopulateNewTab(cosmeticComp);
+        GetTabData(tab);
+
+        foreach (CosmeticItem_SO itemSO in cosmeticComp.GetCosmeticType().GetCosmeticItems())
+        {
+            GameObject cosmeticTabItemGO = Instantiate(TabBodyItemGraphicPrefab);
+            cosmeticTabItemGO.name = itemSO.Sprite.name;
+
+            UICosmeticTabItem cosmeticTabItem = cosmeticTabItemGO.GetComponent<UICosmeticTabItem>();
+
+            CosmeticItem item = data.GetItem(itemSO.ItemId);
+            item.TypeId = cosmeticComp.GetCosmeticType().GetTypeId();
+
+            cosmeticTabItem.PopulateItem(item, itemSO, userData, RefreshItemsEvent);
+            cosmeticTabItem.ItemBtn.onClick.AddListener(delegate { OnCosmeticItemSelected(cosmeticTabItem); });
+
+            tab.AddNewItem(cosmeticTabItemGO);
+
+            if (IsAnActivePresetItem(activePreset, cosmeticTabItem))
+            {
+                presetActivatedTabItems.Add(cosmeticTabItem);
+            }
+
+            tab.TabUnSelected();
+        }
+    }
+
+    private bool IsAnActivePresetItem(CharacterPreset activePreset, UICosmeticTabItem cosmeticTabItem)
+    {
+        if (activePreset == null) return false;
+
+        foreach (int itemId in activePreset.Cosmetics)
+        {
+            if (itemId == cosmeticTabItem.CosmeticItemData.ItemId)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void SelectActivePresetItems(List<UICosmeticTabItem> presetActivatedTabItems)
+    {
+        for (int i = 0; i < presetActivatedTabItems.Count; i++)
+        {
+            print("Clicnking bttnnssss");
+            TabController.SetActiveTab(i);
+            presetActivatedTabItems[i].ItemBtn.onClick.Invoke();
+        }
     }
 
     private UITab PopulateNewTab(ICosmeticComponent cosmeticComp)
@@ -165,10 +207,14 @@ public class UICosmeticSelection : MonoBehaviour
         {
             if (tabData.ActiveCosmeticItem != null)
             {
-                tabData.ActiveCosmeticItemAnim?.reset();
+                //tabData.ActiveCosmeticItemAnim?.cancel(tabData.ActiveCosmeticItem.ItemBtn.gameObject);
+                if (tabData.ActiveCosmeticItemAnim != null)
+                {
+                    LeanTween.cancel(tabData.ActiveCosmeticItemAnim.id);
+                }
             }
 
-            LeanTween.scale(tabData.PreviousCosmeticItem.ItemBtn.gameObject, tabData.PreviousCosmeticItem.ItemBtn.transform.localScale * 0.833f, 0.25f).setEaseOutQuad();
+            LeanTween.scale(tabData.PreviousCosmeticItem.ItemBtn.gameObject, Vector3.one, 0.25f).setEaseOutQuad();
         }
 
         if (tabData.ActiveCosmeticItem != null)
@@ -203,5 +249,18 @@ public class UICosmeticSelection : MonoBehaviour
         CosmeticTabData.Add(tabData);
 
         return tabData;
+    }
+
+    private CharacterPreset GetActiveCharacterPresetData(UserData userData, string activePresetId)
+    {
+        foreach (CharacterPreset preset in userData.MyCharacters)
+        {
+            if (preset.PresetId == activePresetId)
+            {
+                return preset;
+            }
+        }
+
+        return null;
     }
 }

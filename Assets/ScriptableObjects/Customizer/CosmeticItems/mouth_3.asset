@@ -18,3 +18,4 @@ MonoBehaviour:
   State: 2
   Sprite: {fileID: 21300000, guid: 1ea7a42ac74084e43b723a7103e71daf, type: 3}
   Icon: {fileID: 21300000, guid: 2ff1387e6c4fa934f9ffd446b72eb851, type: 3}
+  PositionOffset: {x: 0, y: 0.214, z: 0}

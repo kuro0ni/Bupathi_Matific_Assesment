@@ -14,7 +14,7 @@ public class UITab : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        PlayInAnimation();
     }
 
     // Update is called once per frame
@@ -51,5 +51,11 @@ public class UITab : MonoBehaviour
     public GameObject GetTabGraphic()
     {
         return TabGraphic;
+    }
+
+    private void PlayInAnimation()
+    {
+        transform.localScale = Vector3.zero;
+        LeanTween.scale(gameObject, Vector3.one, 1f).setEaseInBounce(); 
     }
 }

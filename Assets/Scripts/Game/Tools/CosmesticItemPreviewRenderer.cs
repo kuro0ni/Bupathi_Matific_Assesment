@@ -2,6 +2,7 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class CosmesticItemPreviewRenderer : MonoBehaviour
@@ -60,6 +61,7 @@ public class CosmesticItemPreviewRenderer : MonoBehaviour
     private void RecordCosmeticItemPositionOffset()
     {
         RenderItem.PositionOffset = FocusedRenderer.transform.localPosition;
+        EditorUtility.SetDirty(RenderItem);
     }
 
 }

@@ -11,6 +11,8 @@ public class UIPlayerStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayInAnimation();
+
         UserData userData = GetUserData();
         PopulateStats(userData);
     }
@@ -43,5 +45,11 @@ public class UIPlayerStats : MonoBehaviour
         Debug.Log("On user data change event raised");
         Debug.Log(data.Coins);
         PopulateStats(data);
+    }
+
+    private void PlayInAnimation()
+    {
+        transform.localScale = new Vector3(1,0,1);
+        LeanTween.scaleY(gameObject, 1, 1f).setEaseOutBounce();
     }
 }

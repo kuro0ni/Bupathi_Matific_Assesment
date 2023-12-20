@@ -18,7 +18,8 @@ public class CharacterCustomizer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Init();
+        PlayInAnimation();
+        Init();       
     }
 
     public void Init()
@@ -101,5 +102,11 @@ public class CharacterCustomizer : MonoBehaviour
     public CharacterPreset_SO GetActivePreset()
     {
         return CharacterPresetSO;
+    }
+
+    private void PlayInAnimation()
+    {
+        transform.localPosition = new Vector3(transform.localPosition.x, -6.32f, transform.localPosition.z);
+        LeanTween.moveLocalY(gameObject, -0.86f, 1.5f).setEaseOutCubic().setDelay(1);
     }
 }

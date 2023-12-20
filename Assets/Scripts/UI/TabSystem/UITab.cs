@@ -55,7 +55,8 @@ public class UITab : MonoBehaviour
 
     private void PlayInAnimation()
     {
+        Vector3 originalScale = transform.localScale;
         transform.localScale = Vector3.zero;
-        LeanTween.scale(gameObject, Vector3.one, 1f).setEaseOutBounce(); 
+        LeanTween.scale(gameObject, originalScale, 1f).setEaseOutBounce(); 
     }
 }

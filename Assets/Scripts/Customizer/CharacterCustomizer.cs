@@ -106,7 +106,7 @@ public class CharacterCustomizer : MonoBehaviour
 
     private void PlayInAnimation()
     {
-        transform.localPosition = new Vector3(transform.localPosition.x, -6.32f, transform.localPosition.z);
+        transform.localPosition = new Vector3(transform.localPosition.x, -7.5f, transform.localPosition.z);
         LeanTween.moveLocalY(gameObject, -0.86f, 1.5f).setEaseOutCubic().setDelay(1);
     }
 }

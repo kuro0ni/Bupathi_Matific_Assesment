@@ -56,9 +56,10 @@ public class UICosmeticSelection : MonoBehaviour
             PopulateTabContent(cosmeticComp, data, userData, activePreset, presetActivatedTabItems);
         }
 
-        TabController.OnTabSelected.AddListener(OnNewTabSelected);
+
         //TabController.SetActiveTab(0);
         SelectActivePresetItems(presetActivatedTabItems);
+        TabController.OnTabSelected.AddListener(OnNewTabSelected);
         TabController.SetActiveTab(0);
     }
 
@@ -225,7 +226,7 @@ public class UICosmeticSelection : MonoBehaviour
 
     private void PlayNewTabSelectionAnimation(UITab oldTab, UITab newTab)
     {
-        LeanTween.scale(oldTab.TabBtn.gameObject, oldTab.TabBtn.transform.localScale * 0.833f, 0.2f).setEaseInOutQuad();
+        LeanTween.scale(oldTab.TabBtn.gameObject, /*oldTab.TabBtn.transform.localScale * 0.833f*/Vector3.one, 0.2f).setEaseInOutQuad();
         LeanTween.scale(newTab.TabBtn.gameObject, newTab.TabBtn.transform.localScale * 1.2f, 0.2f).setEaseInOutQuad();
     }
 

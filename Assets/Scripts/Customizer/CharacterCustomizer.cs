@@ -58,7 +58,7 @@ public class CharacterCustomizer : MonoBehaviour
     //    ApplyCosmetic(item);
     //}
 
-    [Button("Apply Preset")]
+
     public void ApplyPreset()
     {
         if (CosmeticComponentList == null)

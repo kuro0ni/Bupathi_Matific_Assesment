@@ -9,6 +9,8 @@ public class CosmesticItemPreviewRenderer : MonoBehaviour
 {
     public ICosmeticComponent [] CosmeticComponents;
 
+    public GameObject Character;
+
     [Expandable]
     public CosmeticItem_SO RenderItem;
     public GameObject FocusedRenderer;
@@ -54,7 +56,7 @@ public class CosmesticItemPreviewRenderer : MonoBehaviour
     {
         if (CosmeticComponents != null) return;
 
-        CosmeticComponents = GetComponentsInChildren<ICosmeticComponent>();
+        CosmeticComponents = Character.GetComponentsInChildren<ICosmeticComponent>();
     }
 
     [Button("Record Cosmetic Position Offset")]

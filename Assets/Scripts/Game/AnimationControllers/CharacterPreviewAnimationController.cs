@@ -11,7 +11,6 @@ public class CharacterPreviewAnimationController : MonoBehaviour
     public GameObject PreviewBtn;
     public GameObject BackBtn;
 
-    public GameObject PreviewBackDropUI;
     public GameObject PreviewBackDropWorld;
     public GameObject RayEffect;
 

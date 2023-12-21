@@ -8,7 +8,7 @@ public class UIPlayerStats : MonoBehaviour
 {
     public TMP_Text PlayerLevelText;
     public TMP_Text PlayerCoinsText;
-    // Start is called before the first frame update
+
     void Start()
     {
         PlayInAnimation();
@@ -17,12 +17,10 @@ public class UIPlayerStats : MonoBehaviour
         PopulateStats(userData);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /// <summary>
+    /// Get user data from the Getter and register for the OnUserDataChange event so on an event where UserData is modified it will be notified to this object
+    /// </summary>
+    /// <returns></returns>
     private UserData GetUserData()
     {
         IUserDataGetter userDataGetter = ServiceLocator.Current.Get<IUserDataGetter>(Service.USER_DATA_GETTER);
@@ -42,8 +40,6 @@ public class UIPlayerStats : MonoBehaviour
 
     private void OnUserDataChange(UserData data)
     {
-        Debug.Log("On user data change event raised");
-        Debug.Log(data.Coins);
         PopulateStats(data);
     }
 

@@ -21,9 +21,3 @@ public class FileStorage : IGameDataStorage
         FileReader.WriteFile(data);
     }
 }
-
-public enum GameData
-{
-    USER_DATA = 0,
-    COSMETIC_DATA = 1
-}

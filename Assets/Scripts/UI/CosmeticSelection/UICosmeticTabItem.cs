@@ -35,6 +35,13 @@ public class UICosmeticTabItem : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Populate a cosmetic item with given data
+    /// </summary>
+    /// <param name="itemData"></param>
+    /// <param name="itemSO"></param>
+    /// <param name="userData"></param>
+    /// <param name="refreshItemEvent"></param>
     public void PopulateItem(CosmeticItem itemData, CosmeticItem_SO itemSO, UserData userData, UnityEvent<UserData> refreshItemEvent)
     {
         CosmeticItemData = itemData;
@@ -53,6 +60,11 @@ public class UICosmeticTabItem : MonoBehaviour
         refreshItemEvent.AddListener(RefreshItem);
     }
 
+    /// <summary>
+    /// Change the visuals of an item by the CosmeticItemState. Ex: If an item is in Locked state it will be greyed out and unclickable
+    /// </summary>
+    /// <param name="itemData"></param>
+    /// <param name="userData"></param>
     private void SetGraphicsByState(CosmeticItem itemData, UserData userData)
     {
         switch (itemData.State)

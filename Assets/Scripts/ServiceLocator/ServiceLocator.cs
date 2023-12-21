@@ -13,6 +13,7 @@ public class ServiceLocator
     {
         Current = new ServiceLocator();
     }
+
     public T Get<T>(Service serviceType)
     {
         if (!Services.ContainsKey(serviceType))

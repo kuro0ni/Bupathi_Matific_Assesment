@@ -14,14 +14,17 @@ public class CharacterPreset_SO : ScriptableObject
     [SerializeField]
     private string Name;
     [SerializeField]
-    [OnValueChanged("OnBodyCosmeticChanged")]
     private CosmeticType_SO BodyCosmetic;
     [ReadOnly]
     [SerializeField]
     private List<CosmeticItem> Cosmetics;
 
+    /// <summary>
+    /// Update the preset's cosmetics list with the given Cosmetic item data
+    /// </summary>
+    /// <param name="item"></param>
     [ExecuteAlways]
-    public void UpdatePreset(CosmeticItem item)
+    public void UpdatePresetCosmetics(CosmeticItem item)
     {
         bool isNewItem = true;
 
@@ -29,9 +32,10 @@ public class CharacterPreset_SO : ScriptableObject
         {
             if (Cosmetics[i].TypeId == item.TypeId)
             {
-                //Cosmetics[i].ItemId = item.ItemId;
                 Cosmetics[i] = item;
+
                 isNewItem = false;
+
                 return;
             }
         }
@@ -42,16 +46,16 @@ public class CharacterPreset_SO : ScriptableObject
         }
     }
     
-    void OnBodyCosmeticChanged()
-    {
-        if (BodyCosmetic == null) return;
+    //void OnBodyCosmeticChanged()
+    //{
+    //    if (BodyCosmetic == null) return;
 
-        CosmeticItem item = new CosmeticItem();
-        item.TypeId = BodyCosmetic.GetTypeId();
-        item.ItemId = 0;
+    //    CosmeticItem item = new CosmeticItem();
+    //    item.TypeId = BodyCosmetic.GetTypeId();
+    //    item.ItemId = 0;
 
-        UpdatePreset(item);
-    }
+    //    UpdatePreset(item);
+    //}
 
     public List<CosmeticItem> GetCosmetics() 
     { 
@@ -63,6 +67,10 @@ public class CharacterPreset_SO : ScriptableObject
         Cosmetics.Clear();
     }
 
+    /// <summary>
+    /// Get preset data in an object of type CharacterPreset
+    /// </summary>
+    /// <returns></returns>
     public CharacterPreset GetPresetData()
     {
         CharacterPreset preset = new CharacterPreset();
@@ -78,6 +86,9 @@ public class CharacterPreset_SO : ScriptableObject
         return preset;
     }
 
+    /// <summary>
+    /// Loop through the character presets saved in the user data to find a preset record that matches this object's PresetId and load the data
+    /// </summary>
     public void LoadPreset()
     {
         IUserDataGetter userDataGetter = ServiceLocator.Current.Get<IUserDataGetter>(Service.USER_DATA_GETTER);
@@ -93,6 +104,10 @@ public class CharacterPreset_SO : ScriptableObject
         }
     }
 
+    /// <summary>
+    /// Populate this character preset SO from the given CharacterPreset data object 
+    /// </summary>
+    /// <param name="presetData"></param>
     private void PopulatePreset(CharacterPreset presetData)
     {
         Name = presetData.CharacterName;
@@ -101,10 +116,13 @@ public class CharacterPreset_SO : ScriptableObject
         foreach (int itemId in presetData.Cosmetics)
         {
             CosmeticItem item = cosmeticDataGetter.GetItemDataById(itemId);
-            UpdatePreset(item);
+            UpdatePresetCosmetics(item);
         }       
     }
 
+    /// <summary>
+    /// Save this preset's data in UserData
+    /// </summary>
     public void SavePreset()
     {
         if (!Application.isPlaying) return;

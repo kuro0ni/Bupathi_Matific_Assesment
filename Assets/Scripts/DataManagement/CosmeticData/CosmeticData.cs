@@ -10,8 +10,6 @@ public class CosmeticData
 
     public CosmeticItem GetItem(int itemId)
     {
-        Debug.Log($"finding item {itemId} in {Items.Count} items ");
-
         foreach (CosmeticItem item in Items)
         {
             if (item.ItemId == itemId)

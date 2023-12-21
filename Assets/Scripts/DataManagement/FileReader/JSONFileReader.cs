@@ -28,7 +28,7 @@ public class JSONFileReader : IFileReader
         StreamWriter writer = new StreamWriter(Path);
 
         string dataStr = JsonUtility.ToJson(data, true);
-        Debug.Log(dataStr);
+
         writer.Write(dataStr);
         writer.Close();
     }

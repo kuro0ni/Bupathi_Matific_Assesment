@@ -14,17 +14,16 @@ public class CosmeticsManager : MonoBehaviour, IGameService
         ServiceLocator.Current.Register(this, Service.COSMETIC_MANAGER);
     }
 
+    /// <summary>
+    /// Load cosmetic data from any avaialble source of storage and if there are no data use the scriptable objects to build the initial database
+    /// </summary>
     public void LoadCosmeticsDatabase()
     {
-        Debug.Log("Loading cosmetics database");
-
         ICosmeticDataGetter cosmeticDataGetter = ServiceLocator.Current.Get<ICosmeticDataGetter>(Service.COSMETIC_DATA_GETTER);
         CosmeticData cosmeticData = cosmeticDataGetter.GetData();
 
         if (cosmeticData == null)
         {
-            Debug.Log("No cosmetics data found, building database from scriptable objects");
-
             cosmeticData = new CosmeticData();
             cosmeticData.Items = new List<CosmeticItem>();
 
@@ -34,6 +33,11 @@ public class CosmeticsManager : MonoBehaviour, IGameService
         OnCosmeticDataLoaded.Invoke(cosmeticData);
     }
 
+    /// <summary>
+    /// Build cosmetic database using scriptable object data
+    /// </summary>
+    /// <param name="cosmeticData"></param>
+    /// <param name="cosmeticDataGetter"></param>
     private void BuildCosmeticsDatabase(CosmeticData cosmeticData, ICosmeticDataGetter cosmeticDataGetter)
     {     
         foreach (CosmeticItem_SO itemSO in CosmeticItems)

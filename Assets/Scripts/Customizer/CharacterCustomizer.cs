@@ -35,29 +35,13 @@ public class CharacterCustomizer : MonoBehaviour
         {
             if (component.GetCosmeticType().GetTypeId() == item.TypeId)
             {
-                CharacterPresetSO.UpdatePreset(item);
+                CharacterPresetSO.UpdatePresetCosmetics(item);
                 component.RenderItem(item.ItemId);
             }
         }
 
         CharacterPresetSO.SavePreset();
     }
-
-    //[Button("Random Cosmetic")]
-    //public void ApplyCosmeticOnEditor()
-    //{
-    //    if (CosmeticComponentList == null) 
-    //    {
-    //        CosmeticComponentList = GetComponentsInChildren<ICosmeticComponent>();
-    //    }
-
-    //    CosmeticItem item = new CosmeticItem();
-    //    item.ItemId = Random.Range(0, 10);
-    //    item.TypeId = Random.Range(1, 4);
-
-    //    ApplyCosmetic(item);
-    //}
-
 
     public void ApplyPreset()
     {

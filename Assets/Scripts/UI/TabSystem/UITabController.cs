@@ -15,18 +15,12 @@ public class UITabController : MonoBehaviour
     private int ActiveTab = 0;
 
     public UnityEvent<UITab, UITab> OnTabSelected;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /// <summary>
+    /// Render a new tab button object from the given prefab
+    /// </summary>
+    /// <param name="tabGraphicPrefab"></param>
+    /// <returns></returns>
     public UITab AddNewTab(GameObject tabGraphicPrefab)
     {
         GameObject tabGO = Instantiate(TabPrefab, TabBar.transform);
@@ -47,6 +41,10 @@ public class UITabController : MonoBehaviour
         return tab;
     }
 
+    /// <summary>
+    /// Render a new tab body for the given tab
+    /// </summary>
+    /// <param name="tab"></param>
     private void AddNewTabBody(UITab tab)
     {
         GameObject tabBodyGO = Instantiate(TabBodyPrefab, TabBodyContainer.transform);

@@ -10,16 +10,8 @@ public class CosmeticComponent : MonoBehaviour, ICosmeticComponent
     [SerializeField]
     private SpriteRenderer CosmeticRenderer;
 
-    private int SelectedItemId;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
     public void RenderItem(int itemId)
     {
-        Debug.Log($"Rendering item {itemId}");
-        SelectedItemId = itemId;
         CosmeticRenderer.sprite = CosmeticType.GetItem(itemId).Sprite;
         CosmeticRenderer.transform.localPosition = CosmeticType.GetItem(itemId).PositionOffset;
     }
@@ -33,8 +25,6 @@ public class CosmeticComponent : MonoBehaviour, ICosmeticComponent
     {
         CosmeticRenderer.sprite = null;
     }
-
-
 
     public GameObject GetRendererGameObject()
     {

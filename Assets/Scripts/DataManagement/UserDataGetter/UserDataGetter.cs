@@ -47,7 +47,6 @@ public class UserDataGetter : IUserDataGetter, IGameService
 
     public void ListenToOnUserDataChange(UnityAction<UserData> callback)
     {
-        Debug.Log("registered to On user data change event");
         OnUserStatChanged.AddListener(callback);
     }
 }

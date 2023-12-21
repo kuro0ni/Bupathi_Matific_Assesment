@@ -12,7 +12,11 @@ public class CosmeticItem
     public int Price;
     public int MinLevel;
     public CosmeticItemState State;
-
+ 
+    /// <summary>
+    /// Change this item object's state from the given user data
+    /// </summary>
+    /// <param name="userData"></param>
     public void SetItemStateByUserData(UserData userData)
     {
         if (State == CosmeticItemState.AVAILABLE) return;

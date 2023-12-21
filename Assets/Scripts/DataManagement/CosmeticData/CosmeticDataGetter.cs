@@ -19,7 +19,7 @@ public class CosmeticDataGetter : ICosmeticDataGetter, IGameService
         }
         catch (FileNotFoundException ex)
         {
-            Debug.LogError("Could not find Cosmetic data file in the local drive.");
+            Debug.LogWarning("Could not find Cosmetic data file in the local drive.");
         }
         
     }

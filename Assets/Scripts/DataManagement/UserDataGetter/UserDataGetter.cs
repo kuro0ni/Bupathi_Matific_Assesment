@@ -21,8 +21,8 @@ public class UserDataGetter : IUserDataGetter, IGameService
         }
         catch (System.Exception ex)
         {
-            Debug.LogError("Could not find stored user data");
-            Debug.LogError(ex.Message);         
+            Debug.LogWarning("Could not find stored user data");
+            Debug.LogWarning(ex.Message);         
         }
     }
 

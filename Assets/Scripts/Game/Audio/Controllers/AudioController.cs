@@ -12,7 +12,15 @@ public class AudioController : MonoBehaviour, IGameService
 
         if (clip == null) return;
 
-        speaker.PlayOneShot(clip.AudioClip);
+        if (clip.Looping)
+        {
+            speaker.clip = clip.AudioClip;
+            speaker.Play();
+        }
+        else
+        {
+            speaker.PlayOneShot(clip.AudioClip);
+        }
     }
 
     private AudioClipData_SO GetClip(AudioClipType clipType)

@@ -7,6 +7,7 @@ public class AudioClipData_SO : ScriptableObject
 {
     public AudioClip AudioClip;
     public AudioClipType ClipType;
+    public bool Looping = false;
 }
 
 public enum AudioClipType

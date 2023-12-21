@@ -17,24 +17,22 @@ public class UserDataGetter : IUserDataGetter, IGameService
 
         try
         {
-            Data = gameDataStorage.Download<UserData>();
+            Data = gameDataStorage.Download<UserData>();            
         }
-        catch (FileNotFoundException ex)
+        catch (System.Exception ex)
         {
-            Debug.LogError("Could not find User data file in the local drive.");
-
-            Data = new UserData
-            {
-                Level = Random.Range(0, 8),
-                Coins = Random.Range(50, 1500)
-            };
-
-            SetData(Data);
+            Debug.LogError("Could not find stored user data");
+            Debug.LogError(ex.Message);         
         }
     }
 
     public UserData GetData()
     {
+        if (Data == null)
+        {
+            CreateRandomUserData();
+        }
+
         return Data;
     }
 
@@ -48,5 +46,16 @@ public class UserDataGetter : IUserDataGetter, IGameService
     public void ListenToOnUserDataChange(UnityAction<UserData> callback)
     {
         OnUserStatChanged.AddListener(callback);
+    }
+
+    private void CreateRandomUserData()
+    {
+        Data = new UserData
+        {
+            Level = Random.Range(0, 8),
+            Coins = Random.Range(50, 1500)
+        };
+
+        SetData(Data);
     }
 }

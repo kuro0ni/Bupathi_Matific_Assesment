@@ -10,14 +10,25 @@ public static class ServiceLocatorInitializer
     {
         ServiceLocator.Initiailze();
 
-        JSONFileReader cosmeticsJsonFileReader = new JSONFileReader(PathsConfig.COSMETICS_PATH);
-        JSONFileReader userDataJsonFileReader = new JSONFileReader(PathsConfig.USER_DATA_PATH);
+        IGameDataStorage cosmeticDataStorage, userDataStorage;
 
-        FileStorage cosmeticsFileStorage = new FileStorage(cosmeticsJsonFileReader);
-        FileStorage userDatafileStorage = new FileStorage(userDataJsonFileReader);
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            IParser jsonParser = new JSONParser();
+            cosmeticDataStorage = new PlayerPrefStorage(PathsConfig.COSMETICS_PREF_KEY, PlayerPrefType.STRING, jsonParser);
+            userDataStorage = new PlayerPrefStorage(PathsConfig.USER_DATA_PREF_KEY, PlayerPrefType.STRING, jsonParser);
+        }
+        else
+        {
+            JSONFileReader cosmeticsJsonFileReader = new JSONFileReader(PathsConfig.COSMETICS_PATH);
+            JSONFileReader userDataJsonFileReader = new JSONFileReader(PathsConfig.USER_DATA_PATH);
 
-        CosmeticDataGetter cosmeticDataGetter = new CosmeticDataGetter(cosmeticsFileStorage);
-        UserDataGetter userDataGetter = new UserDataGetter(userDatafileStorage);
+            cosmeticDataStorage = new FileStorage(cosmeticsJsonFileReader);
+            userDataStorage = new FileStorage(userDataJsonFileReader);
+        }
+
+        CosmeticDataGetter cosmeticDataGetter = new CosmeticDataGetter(cosmeticDataStorage);
+        UserDataGetter userDataGetter = new UserDataGetter(userDataStorage);
 
         ServiceLocator.Current.Register(userDataGetter, Service.USER_DATA_GETTER);
         ServiceLocator.Current.Register(cosmeticDataGetter, Service.COSMETIC_DATA_GETTER);

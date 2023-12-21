@@ -39,7 +39,7 @@ public class CosmeticDataGetter : ICosmeticDataGetter, IGameService
             }
         }
 
-        return null;
+        return null; 
     }
 
     public void SetData<T>(T data)

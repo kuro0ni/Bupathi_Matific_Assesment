@@ -23,19 +23,6 @@ public class PlayerPrefStorage : IGameDataStorage
 
     public T Download<T>()
     {
-        //if (typeof(T) == typeof(string))
-        //{
-        //    return Parser.Parse<T>(PlayerPrefs.GetString(Key));
-        //}
-        //else if (typeof(T) == typeof(int))
-        //{
-        //    return (T)Convert.ChangeType(PlayerPrefs.GetInt(Key), typeof(T));
-        //}
-        //else if ( typeof(T) == typeof(float))
-        //{
-        //    return (T)Convert.ChangeType(PlayerPrefs.GetFloat(Key), typeof(T));
-        //}
-
         switch (PrefType)
         {
             case PlayerPrefType.STRING:
@@ -56,20 +43,6 @@ public class PlayerPrefStorage : IGameDataStorage
 
     public void Upload<T>(T data)
     {
-        //if (typeof(T) == typeof(string))
-        //{
-        //    //PlayerPrefs.SetString(Key, (string)Convert.ChangeType(data, typeof(string)));
-        //    PlayerPrefs.SetString(Key, Parser.Unparse(data));
-        //}
-        //else if (typeof(T) == typeof(int))
-        //{
-        //    PlayerPrefs.SetInt(Key, (int)Convert.ChangeType(data, typeof(int)));
-        //}
-        //else if (typeof(T) == typeof(float))
-        //{
-        //    PlayerPrefs.SetFloat(Key, (float)Convert.ChangeType(data, typeof(float)));
-        //}
-
         switch (PrefType)
         {
             case PlayerPrefType.STRING:

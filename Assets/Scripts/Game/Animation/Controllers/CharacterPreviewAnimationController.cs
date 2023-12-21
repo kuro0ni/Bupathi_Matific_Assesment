@@ -15,6 +15,9 @@ public class CharacterPreviewAnimationController : MonoBehaviour
     public GameObject RayEffect;
 
     LTDescr RayAnim;
+
+    [Header("Audio Settings")]
+    public AudioSource ButtonSpeaker;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +32,8 @@ public class CharacterPreviewAnimationController : MonoBehaviour
 
     public void OnPreviewBtnClicked()
     {
+        ServiceLocator.Current.Get<AudioController>(Service.AUDIO_CONTROLLER).PlayAudio(AudioClipType.BUTTON_CLICK_1, ButtonSpeaker);
+
         OriginalCharacterPos = Character.transform.position;
 
         //Hide preview btn
@@ -56,6 +61,8 @@ public class CharacterPreviewAnimationController : MonoBehaviour
 
     public void OnBackBtnClicked()
     {
+        ServiceLocator.Current.Get<AudioController>(Service.AUDIO_CONTROLLER).PlayAudio(AudioClipType.BUTTON_CLICK_1, ButtonSpeaker);
+
         //Hide and back btn
         LeanTween.scale(BackBtn, Vector3.zero, 0.5f).setEaseOutBounce();
 

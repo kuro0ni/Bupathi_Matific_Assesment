@@ -80,7 +80,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d879d53af0505d4b93d84172ed0579f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterPreset: {fileID: 11400000, guid: af719b345ff34ae4a8f5768be0ade4ce, type: 2}
+  CharacterPresetSO: {fileID: 0}
+  CustomizerComponents: {fileID: 0}
+  CustomizerSpeaker: {fileID: 0}
 --- !u!1001 &4278399616705602817
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -18,8 +18,11 @@ public class UICosmeticSelection : MonoBehaviour
     [SerializeField]
     private GameObject TabBodyItemGraphicPrefab;
 
+    [Header("Audio")]
+    public AudioSource ButtonSpeaker;
+    public AudioSource CustomizerSpeaker;
 
-    [HideInInspector]
+   [HideInInspector]
     public UnityEvent<UserData> RefreshItemsEvent;
     [SerializeField]
     private List<CosmeticUITabData> CosmeticTabData;
@@ -44,6 +47,8 @@ public class UICosmeticSelection : MonoBehaviour
     {
         CosmeticData = data;
 
+        ToggleSpeakers(false);
+
         ICosmeticComponent[] cosmeticComponents = CharacterCustomizer.GetCharacterCosmeticComponents();
 
         IUserDataGetter userDataGetter = ServiceLocator.Current.Get<IUserDataGetter>(Service.USER_DATA_GETTER);
@@ -61,6 +66,13 @@ public class UICosmeticSelection : MonoBehaviour
 
         TabController.OnTabSelected.AddListener(OnNewTabSelected);
         TabController.SetActiveTab(0);
+
+        OnPopulationUIFinished();
+    }
+
+    private void OnPopulationUIFinished()
+    {
+        ToggleSpeakers(true);
     }
 
     /// <summary>
@@ -172,6 +184,8 @@ public class UICosmeticSelection : MonoBehaviour
         PlayCosmeticTabItemSelectionAnimation(cosmeticTabItem);       
 
         CharacterCustomizer.ApplyCosmetic(cosmeticTabItem.CosmeticItemData);
+
+        ServiceLocator.Current.Get<AudioController>(Service.AUDIO_CONTROLLER).PlayAudio(AudioClipType.COSMETIC_APPLY, CustomizerSpeaker);
     }
 
     /// <summary>
@@ -220,6 +234,8 @@ public class UICosmeticSelection : MonoBehaviour
             cosmeticDataGetter.SetData(CosmeticData);
 
             isPurchaseSuccessfull = true;
+
+            ServiceLocator.Current.Get<AudioController>(Service.AUDIO_CONTROLLER).PlayAudio(AudioClipType.COSMETIC_PURCHASE, ButtonSpeaker);
         }
 
         return isPurchaseSuccessfull;
@@ -232,6 +248,7 @@ public class UICosmeticSelection : MonoBehaviour
     /// <param name="newTab"></param>
     private void OnNewTabSelected(UITab oldTab, UITab newTab)
     {
+        ServiceLocator.Current.Get<AudioController>(Service.AUDIO_CONTROLLER).PlayAudio(AudioClipType.BUTTON_CLICK_1, ButtonSpeaker);
         PlayNewTabSelectionAnimation(oldTab, newTab);
     }
 
@@ -309,5 +326,11 @@ public class UICosmeticSelection : MonoBehaviour
         }
 
         return null;
+    }
+
+    private void ToggleSpeakers(bool state)
+    {
+        CustomizerSpeaker.gameObject.SetActive(state);
+        ButtonSpeaker.gameObject.SetActive(state);
     }
 }

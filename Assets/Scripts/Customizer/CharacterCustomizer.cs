@@ -15,6 +15,7 @@ public class CharacterCustomizer : MonoBehaviour
     private CharacterPreset_SO CharacterPresetSO;
     [SerializeField]
     private GameObject CustomizerComponents;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +41,7 @@ public class CharacterCustomizer : MonoBehaviour
             }
         }
 
-        CharacterPresetSO.SavePreset();
+        CharacterPresetSO.SavePreset();      
     }
 
     public void ApplyPreset()
